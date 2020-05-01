@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1588354806306
+Build-Jdk: 11.0.7
+Built-By: juandiego
+Bundle-Activator: pe.com.jdmm21.felix.bookshelf.service.tui.sample.activ
+ ator.ExampleActivator
+Bundle-Category: sample
+Bundle-ManifestVersion: 2
+Bundle-Name: Sample Service
+Bundle-SymbolicName: pe.com.jdmm21.felix.bookshelf-service-tui-sample
+Bundle-Version: 0.0.1
+Created-By: Apache Maven Bundle Plugin
+Export-Package: pe.com.jdmm21.felix.bookshelf.service.tui.sample;uses:="
+ org.osgi.framework";version="0.0.1"
+Import-Package: org.osgi.framework;version="[1.9,2)",pe.com.jdmm21.felix
+ .bookshelf.service.tui.sample
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=11))"
+Tool: Bnd-4.2.0.201903051501
