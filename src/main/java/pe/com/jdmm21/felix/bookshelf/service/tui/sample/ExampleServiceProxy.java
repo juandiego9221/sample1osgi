@@ -3,6 +3,9 @@ package pe.com.jdmm21.felix.bookshelf.service.tui.sample;
 import java.util.Set;
 
 import pe.com.jdmm21.felix.bookshelf.inventory.api.Book;
+import pe.com.jdmm21.felix.bookshelf.inventory.api.InvalidBookException;
+import pe.com.jdmm21.felix.bookshelf.service.api.BookAlreadyExistsException;
+import pe.com.jdmm21.felix.bookshelf.service.api.InvalidCredentialsException;
 
 public interface ExampleServiceProxy {
 	String SCOPE = "book";
@@ -10,7 +13,12 @@ public interface ExampleServiceProxy {
 
 	String greeting(String name);
 
-	Set<Book> search(String username, String password, String attribute, String filter);
+	String add(String username, String password, String isbn, String titile, String author, String category, int rating)
+			throws BookAlreadyExistsException, InvalidBookException, InvalidCredentialsException;
 
-	Set<Book> search(String username, String password, String attribute, int lower, int upper);
+	Set<Book> search(String username, String password, String attribute, String filter)
+			throws InvalidCredentialsException;
+
+	Set<Book> search(String username, String password, String attribute, int lower, int upper)
+			throws InvalidCredentialsException;
 }

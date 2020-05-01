@@ -13,6 +13,7 @@ public class ExampleActivator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		this.reg = context.registerService(ExampleServiceProxy.class, new ExampleServiceProxyImpl(context), null);
+		context.registerService(ExampleServiceProxy.class.getName(), new ExampleServiceProxyImpl(context), null);
 		testService(context);
 	}
 

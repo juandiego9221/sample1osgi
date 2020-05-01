@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.com.jdmm21.felix</groupId>
 	<artifactId>pe.com.jdmm21.felix.bookshelf-service-tui-sample</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<packaging>bundle</packaging>
 	<name>Sample Service</name>
 	<dependencies>
