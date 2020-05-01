@@ -14,7 +14,7 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 	public ExampleServiceProxyImpl(BundleContext bundleContext) {
 		this.bundleContext = bundleContext;
 	}
-
+//df
 	public String greeting(String name) {
 		System.out.println("hello " + name);
 		return name;
