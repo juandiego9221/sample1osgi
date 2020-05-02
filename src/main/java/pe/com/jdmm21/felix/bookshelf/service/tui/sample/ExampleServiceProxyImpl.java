@@ -8,6 +8,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import pe.com.jdmm21.felix.bookshelf.inventory.api.Book;
+import pe.com.jdmm21.felix.bookshelf.inventory.api.BookNotFoundException;
 import pe.com.jdmm21.felix.bookshelf.inventory.api.InvalidBookException;
 import pe.com.jdmm21.felix.bookshelf.service.api.BookAlreadyExistsException;
 import pe.com.jdmm21.felix.bookshelf.service.api.BookshelfService;
@@ -70,6 +71,24 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 		String sessionId = service.login(username, password.toCharArray());
 		Set<String> results = service.searchBooksByGrade(sessionId, lower, upper);
 		return getBooks(sessionId, service, results);
+	}
+
+	@Override
+	public Book searchBook(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("isbn") String isbn) throws BookNotFoundException, InvalidCredentialsException {
+		BookshelfService bookshelfService = lookupService();
+		String sessionId = bookshelfService.login(username, password.toCharArray());
+		Book result = bookshelfService.getBook(sessionId, isbn);
+		return result;
+	}
+
+	@Override
+	public String delete(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("isbn") String isbn) throws BookNotFoundException, InvalidCredentialsException {
+		BookshelfService bookshelfService = lookupService();
+		String sessionId = bookshelfService.login(username, password.toCharArray());
+		bookshelfService.removeBook(sessionId, isbn);
+		return "deleted with isbn: " + isbn;
 	}
 
 	protected BookshelfService lookupService() {

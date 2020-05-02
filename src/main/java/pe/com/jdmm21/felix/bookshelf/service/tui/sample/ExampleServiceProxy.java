@@ -3,13 +3,14 @@ package pe.com.jdmm21.felix.bookshelf.service.tui.sample;
 import java.util.Set;
 
 import pe.com.jdmm21.felix.bookshelf.inventory.api.Book;
+import pe.com.jdmm21.felix.bookshelf.inventory.api.BookNotFoundException;
 import pe.com.jdmm21.felix.bookshelf.inventory.api.InvalidBookException;
 import pe.com.jdmm21.felix.bookshelf.service.api.BookAlreadyExistsException;
 import pe.com.jdmm21.felix.bookshelf.service.api.InvalidCredentialsException;
 
 public interface ExampleServiceProxy {
 	String SCOPE = "book";
-	String[] FUNCTIONS = new String[] { "add", "search" };
+	String[] FUNCTIONS = new String[] { "add", "search", "searchBook", "delete" };
 
 	String greeting(String name);
 
@@ -21,4 +22,10 @@ public interface ExampleServiceProxy {
 
 	Set<Book> search(String username, String password, String attribute, int lower, int upper)
 			throws InvalidCredentialsException;
+
+	Book searchBook(String username, String password, String isbn)
+			throws BookNotFoundException, InvalidCredentialsException;
+
+	String delete(String username, String password, String isbn)
+			throws BookNotFoundException, InvalidCredentialsException;
 }
