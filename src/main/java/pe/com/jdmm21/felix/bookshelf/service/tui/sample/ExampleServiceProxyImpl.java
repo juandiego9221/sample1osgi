@@ -40,7 +40,8 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 	}
 
 	@Override
-	public Set<Book> search(String username, String password, String attribute, String filter)
+	public Set<Book> search(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("attribute") String attribute, @Descriptor("filter") String filter)
 			throws InvalidCredentialsException {
 		BookshelfService service = lookupService();
 		String sessionId = service.login(username, password.toCharArray());
@@ -59,7 +60,8 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 	}
 
 	@Override
-	public Set<Book> search(String username, String password, String attribute, int lower, int upper)
+	public Set<Book> search(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("attribute") String attribute, @Descriptor("lower") int lower, @Descriptor("upper") int upper)
 			throws InvalidCredentialsException {
 		if (!"rating".equals(attribute)) {
 			throw new RuntimeException("Invalid attribute, expecting 'rating' got '" + attribute + "'");
@@ -84,6 +86,7 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 			Book book;
 			try {
 				book = service.getBook(sessionId, isbn);
+				books.add(book);
 			} catch (Exception e) {
 				System.err.println("ISBN " + isbn + " referenced but not found");
 			}

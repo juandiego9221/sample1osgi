@@ -1,5 +1,7 @@
 package pe.com.jdmm21.felix.bookshelf.service.tui.sample.activator;
 
+import java.util.Hashtable;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -12,9 +14,12 @@ public class ExampleActivator implements BundleActivator {
 	ServiceRegistration reg = null;
 
 	public void start(BundleContext context) throws Exception {
-		this.reg = context.registerService(ExampleServiceProxy.class, new ExampleServiceProxyImpl(context), null);
-		context.registerService(ExampleServiceProxy.class.getName(), new ExampleServiceProxyImpl(context), null);
-		testService(context);
+		Hashtable props = new Hashtable();
+		props.put("osgi.command.scope", ExampleServiceProxy.SCOPE);
+		props.put("osgi.command.function", ExampleServiceProxy.FUNCTIONS);
+		this.reg = context.registerService(ExampleServiceProxy.class, new ExampleServiceProxyImpl(context), props);
+		context.registerService(ExampleServiceProxy.class.getName(), new ExampleServiceProxyImpl(context), props);
+//		testService(context);
 	}
 
 	public void stop(BundleContext context) throws Exception {
