@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1588443262571
+Bnd-LastModified: 1588448960063
 Build-Jdk: 11.0.7
 Built-By: juandiego
 Bundle-Activator: pe.com.jdmm21.felix.bookshelf.service.tui.sample.activ
@@ -8,12 +8,12 @@ Bundle-Category: sample
 Bundle-ManifestVersion: 2
 Bundle-Name: Sample Service
 Bundle-SymbolicName: pe.com.jdmm21.felix.bookshelf-service-tui-sample
-Bundle-Version: 0.0.12
+Bundle-Version: 0.0.13
 Created-By: Apache Maven Bundle Plugin
 Export-Package: pe.com.jdmm21.felix.bookshelf.service.tui.sample;uses:="
  org.apache.felix.service.command,org.osgi.framework,pe.com.jdmm21.felix
  .bookshelf.inventory.api,pe.com.jdmm21.felix.bookshelf.service.api";ver
- sion="0.0.12"
+ sion="0.0.13"
 Import-Package: org.apache.felix.service.command;version="[1.0,2)",org.o
  sgi.framework;version="[1.9,2)",pe.com.jdmm21.felix.bookshelf.inventory
  .api;version="[0.0,1)",pe.com.jdmm21.felix.bookshelf.service.api;versio

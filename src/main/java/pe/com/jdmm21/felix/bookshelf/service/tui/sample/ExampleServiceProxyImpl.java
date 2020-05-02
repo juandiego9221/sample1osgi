@@ -91,6 +91,30 @@ public class ExampleServiceProxyImpl implements ExampleServiceProxy {
 		return "deleted with isbn: " + isbn;
 	}
 
+	@Override
+	public Book modifyByGroup(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("isbn") String isbn, @Descriptor("group") String group)
+			throws BookNotFoundException, InvalidCredentialsException, InvalidBookException {
+		BookshelfService bookshelfService = lookupService();
+		String sessionId = bookshelfService.login(username, password.toCharArray());
+		System.out.println("updating ...");
+		bookshelfService.modifyBookGroup(sessionId, isbn, group);
+		System.out.println("item updated: ");
+		return bookshelfService.getBook(sessionId, isbn);
+	}
+
+	@Override
+	public Book modifyByGrade(@Descriptor("username") String username, @Descriptor("password") String password,
+			@Descriptor("isbn") String isbn, @Descriptor("grade") int grade)
+			throws BookNotFoundException, InvalidBookException, InvalidCredentialsException {
+		BookshelfService bookshelfService = lookupService();
+		String sessionId = bookshelfService.login(username, password.toCharArray());
+		System.out.println("updating ...");
+		bookshelfService.modifyBookGrade(sessionId, isbn, grade);
+		System.out.println("item updated: ");
+		return bookshelfService.getBook(sessionId, isbn);
+	}
+
 	protected BookshelfService lookupService() {
 		ServiceReference reference = this.bundleContext.getServiceReference(BookshelfService.class.getName());
 		if (reference == null) {

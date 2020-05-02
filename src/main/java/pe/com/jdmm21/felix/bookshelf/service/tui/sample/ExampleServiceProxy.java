@@ -10,7 +10,7 @@ import pe.com.jdmm21.felix.bookshelf.service.api.InvalidCredentialsException;
 
 public interface ExampleServiceProxy {
 	String SCOPE = "book";
-	String[] FUNCTIONS = new String[] { "add", "search", "searchBook", "delete" };
+	String[] FUNCTIONS = new String[] { "add", "search", "searchBook", "delete", "modifyByGroup", "modifyByGrade" };
 
 	String greeting(String name);
 
@@ -28,4 +28,10 @@ public interface ExampleServiceProxy {
 
 	String delete(String username, String password, String isbn)
 			throws BookNotFoundException, InvalidCredentialsException;
+
+	Book modifyByGroup(String username, String password, String isbn, String group)
+			throws BookNotFoundException, InvalidCredentialsException, InvalidBookException;
+
+	Book modifyByGrade(String username, String password, String isbn, int grade)
+			throws BookNotFoundException, InvalidBookException, InvalidCredentialsException;
 }
