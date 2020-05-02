@@ -13,7 +13,7 @@ public interface ExampleServiceProxy {
 
 	String greeting(String name);
 
-	String add(String username, String password, String isbn, String titile, String author, String category, int rating)
+	String add(String username, String password, String isbn, String title, String author, String category, int rating)
 			throws BookAlreadyExistsException, InvalidBookException, InvalidCredentialsException;
 
 	Set<Book> search(String username, String password, String attribute, String filter)
